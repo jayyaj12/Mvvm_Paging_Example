@@ -17,7 +17,7 @@ import javax.inject.Inject
 class BookSearchViewModel @Inject constructor(private val bookRepository: BookRepository) : ViewModel() {
 
     // 질문 내용
-    var query: String = "책"
+    var query: String = ""
 
     lateinit var clickBookItem: Book
 
@@ -36,7 +36,7 @@ class BookSearchViewModel @Inject constructor(private val bookRepository: BookRe
         }
     }
 
-//     책 검색하기 페이징 사용 안함
+    // 책 검색하기 페이징 사용 안함
     fun getSearchBook() {
         viewModelScope.launch {
             bookRepository.getSearchBook(

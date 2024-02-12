@@ -13,14 +13,6 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
-fun <T> Fragment.collectLatestStateFlow(flow: Flow<T>, collector: suspend (T) -> Unit) {
-    viewLifecycleOwner.lifecycleScope.launch {
-        viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-            flow.collectLatest(collector)
-        }
-    }
-}
-
 fun Fragment.onReplaceFragment(fragment: Fragment) {
     this.parentFragmentManager.beginTransaction().replace(R.id.fragment_container, fragment)
         .commitAllowingStateLoss()
