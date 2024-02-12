@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="bookModel"
+            type="com.example.mvvmexample.ui.book.Book" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/item_cl"
+        android:layout_width="match_parent"
+        android:layout_height="100dp">
+
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="8dp"
+            bind:setImageUrl="@{bookModel.thumbnail}"
+            app:layout_constraintTop_toTopOf="parent"
+            android:id="@+id/thumbnail_iv"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@id/thumbnail_iv"
+            app:layout_constraintTop_toTopOf="@id/thumbnail_iv"
+            android:text="@{bookModel.title}"
+            android:maxLines="1"
+            android:id="@+id/title_tv"
+            android:layout_marginEnd="8dp"
+            android:ellipsize="end"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginStart="8dp"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="@id/title_tv"
+            app:layout_constraintTop_toBottomOf="@id/title_tv"
+            android:text="@{bookModel.authors.toString()}"
+            android:layout_marginTop="4dp"
+            android:maxLines="2"
+            android:ellipsize="end"
+            app:layout_constraintEnd_toEndOf="@id/title_tv"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            android:text="@{bookModel.salePrice + `원`}"
+            app:layout_constraintStart_toStartOf="@id/title_tv"
+            app:layout_constraintBottom_toBottomOf="@id/thumbnail_iv"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
