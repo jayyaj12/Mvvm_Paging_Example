@@ -40,8 +40,7 @@ class BookSearchViewModel @Inject constructor(private val bookRepository: BookRe
     fun getSearchBook() {
         viewModelScope.launch {
             bookRepository.getSearchBook(
-                GetAuthorization.getAuthorizationToken(), query, null, null, null, null
-            ).onSuccess {
+                GetAuthorization.getAuthorizationToken(), query).onSuccess {
                 // 성공
                 Timber.e("it $it")
             }.onFailure {

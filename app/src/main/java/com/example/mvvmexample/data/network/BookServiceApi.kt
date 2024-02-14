@@ -24,10 +24,10 @@ interface BookServiceApi {
     suspend fun getSearchBook(
         @Header("Authorization") token: String,
         @Query("query") query: String,
-        @Query("sort") sort: String?,
-        @Query("page") page: Int?,
-        @Query("size") size: Int?,
-        @Query("target") target: String?,
+        @Query("sort") sort: String? = null,
+        @Query("page") page: Int? = null,
+        @Query("size") size: Int? = null,
+        @Query("target") target: String? = null,
     ): NetworkState<BookEntity.GetSearchBookResponse>
 
 }

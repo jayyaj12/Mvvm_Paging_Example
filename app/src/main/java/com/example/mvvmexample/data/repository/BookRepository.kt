@@ -21,10 +21,10 @@ interface BookRepository {
     suspend fun getSearchBook(
         token: String,
         query: String,
-        sort: String?,
-        page: Int?,
-        size: Int?,
-        target: String?,
+        sort: String? = null,
+        page: Int? = null,
+        size: Int? = null,
+        target: String? = null,
     ): Result<List<Book>>
 
 }
