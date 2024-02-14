@@ -5,7 +5,6 @@ import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import com.example.mvvmexample.data.repository.BookRepository
-import com.example.mvvmexample.util.authorization.GetAuthorization
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -29,7 +28,7 @@ class BookSearchViewModel @Inject constructor(private val bookRepository: BookRe
     fun getSearchBookPaging() {
         viewModelScope.launch {
             bookRepository.getSearchBookPaging(
-                GetAuthorization.getAuthorizationToken(), query, null, null, null, null
+                query, null, null, null, null
             ).cachedIn(viewModelScope).collect {
                 _searchBookPagingResult.value = it
             }
@@ -38,16 +37,16 @@ class BookSearchViewModel @Inject constructor(private val bookRepository: BookRe
 
     // 책 검색하기 페이징 사용 안함
     fun getSearchBook() {
-        viewModelScope.launch {
-            bookRepository.getSearchBook(
-                GetAuthorization.getAuthorizationToken(), query).onSuccess {
-                // 성공
-                Timber.e("it $it")
-            }.onFailure {
-                // 실패
-                Timber.e("message ${it.message}")
-            }
-        }
+//        viewModelScope.launch {
+//            bookRepository.getSearchBook(
+////                GetAuthorization.getAuthorizationToken(), query).onSuccess {
+//                // 성공
+//                Timber.e("it $it")
+//            }.onFailure {
+//                // 실패
+//                Timber.e("message ${it.message}")
+//            }
+//        }
     }
 
     fun queryTextChangedWatcher(str: CharSequence,  start: Int,  before: Int,  count: Int) {

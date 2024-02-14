@@ -8,7 +8,6 @@ interface BookRepository {
 
     // 책 검색하기 api 페이징 사용
     suspend fun getSearchBookPaging(
-        token: String,
         query: String,
         sort: String?,
         page: Int?,
@@ -19,7 +18,6 @@ interface BookRepository {
 
     // 책 검색하기 api
     suspend fun getSearchBook(
-        token: String,
         query: String,
         sort: String? = null,
         page: Int? = null,

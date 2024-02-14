@@ -11,7 +11,6 @@ interface BookServiceApi {
     // 페이징 사용
     @GET("search/book")
     suspend fun getSearchBookPaging(
-        @Header("Authorization") token: String,
         @Query("query") query: String,
         @Query("sort") sort: String?,
         @Query("page") page: Int?,
@@ -22,7 +21,6 @@ interface BookServiceApi {
     // 페이징 사용 x
     @GET("search/book")
     suspend fun getSearchBook(
-        @Header("Authorization") token: String,
         @Query("query") query: String,
         @Query("sort") sort: String? = null,
         @Query("page") page: Int? = null,

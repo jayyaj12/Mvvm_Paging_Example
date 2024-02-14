@@ -6,7 +6,6 @@ import com.example.mvvmexample.data.network.BookServiceApi
 import com.example.mvvmexample.data.repository.BookRepository
 import com.example.mvvmexample.util.Constant.PAGING_MAX_SIZE
 import com.example.mvvmexample.util.Constant.START_PAGING_INDEX
-import com.example.mvvmexample.util.authorization.GetAuthorization
 import retrofit2.HttpException
 import timber.log.Timber
 import java.io.IOException
@@ -28,7 +27,6 @@ class BookSearchPagingSource(
             val pageNumber = params.key ?: START_PAGING_INDEX
 
             val response = api.getSearchBookPaging(
-                token = GetAuthorization.getAuthorizationToken(),
                 query = query,
                 sort = null,
                 page = pageNumber,

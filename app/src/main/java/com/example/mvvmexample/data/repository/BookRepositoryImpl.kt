@@ -18,7 +18,6 @@ import javax.inject.Inject
 class BookRepositoryImpl @Inject constructor(private val bookServiceApi: BookServiceApi) :
     BookRepository {
     override suspend fun getSearchBookPaging(
-        token: String,
         query: String,
         sort: String?,
         page: Int?,
@@ -38,7 +37,6 @@ class BookRepositoryImpl @Inject constructor(private val bookServiceApi: BookSer
     }
 
     override suspend fun getSearchBook(
-        token: String,
         query: String,
         sort: String?,
         page: Int?,
@@ -46,7 +44,7 @@ class BookRepositoryImpl @Inject constructor(private val bookServiceApi: BookSer
         target: String?
     ): Result<List<Book>> {
         when(val searchBookList =
-            bookServiceApi.getSearchBook(token, query, sort, page, size, target)) {
+            bookServiceApi.getSearchBook(query, sort, page, size, target)) {
             is NetworkState.Success -> return Result.success(mapperToBook(searchBookList.body))
             is NetworkState.Failure -> return Result.failure(
                 RetrofitFailureStateException(searchBookList.error, searchBookList.code)
