@@ -29,7 +29,7 @@
             android:layout_marginEnd="12dp"
             android:gravity="left|center"
             android:hint="검색어를 입력해주세요."
-            android:onTextChanged="@{bookSearchViewModel.queryTextChangedWatcher}"
+            android:text="@={bookSearchViewModel.query}"
             android:paddingStart="12dp"
             android:textColor="@color/black"
             android:textSize="16dp"
@@ -57,7 +57,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/search_et"
-            bind:setBookSearchViewModel="@{bookSearchViewModel}"
             bind:setFragment="@{bookSearchFragment}"
             bind:setItem="@{bookSearchViewModel.searchBookPagingResult}" />
 

@@ -14,11 +14,10 @@ import com.example.mvvmexample.ext.onReplaceFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class BookDetailFragment : Fragment() {
+class BookDetailFragment(val item: Book) : Fragment() {
 
     private var _binding: FragmentBookDetailBinding? = null
     private val binding: FragmentBookDetailBinding get() = _binding!!
-    private val bookSearchViewModel: BookSearchViewModel by viewModels()
     private lateinit var backPressedCallback: OnBackPressedCallback
 
     override fun onAttach(context: Context) {
@@ -38,8 +37,8 @@ class BookDetailFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentBookDetailBinding.inflate(layoutInflater)
-        binding.bookSearchViewModel = bookSearchViewModel
-        binding.lifecycleOwner = this
+        binding.bookDetailFragment = this@BookDetailFragment
+        binding.lifecycleOwner = viewLifecycleOwner
         return binding.root
     }
 

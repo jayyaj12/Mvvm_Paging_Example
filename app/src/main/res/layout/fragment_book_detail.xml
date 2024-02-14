@@ -8,8 +8,8 @@
     <data>
 
         <variable
-            name="bookSearchViewModel"
-            type="com.example.mvvmexample.ui.book.BookSearchViewModel" />
+            name="bookDetailFragment"
+            type="com.example.mvvmexample.ui.book.BookDetailFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -23,7 +23,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            bind:setImageUrl="@{bookSearchViewModel.clickBookItem.thumbnail}" />
+            bind:setImageUrl="@{bookDetailFragment.item.thumbnail}" />
 
         <TextView
             android:id="@+id/title_tv"
@@ -32,7 +32,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="12dp"
             android:layout_marginEnd="8dp"
-            android:text="@{bookSearchViewModel.clickBookItem.title}"
+            android:text="@{bookDetailFragment.item.displayTitle}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/thumbnail_iv" />
@@ -42,7 +42,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:text="@{bookSearchViewModel.clickBookItem.authors.toString()}"
+            android:text="@{bookDetailFragment.item.displayAuthors}"
             app:layout_constraintEnd_toEndOf="@id/title_tv"
             app:layout_constraintStart_toStartOf="@id/title_tv"
             app:layout_constraintTop_toBottomOf="@id/title_tv" />
@@ -52,7 +52,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:text="@{bookSearchViewModel.clickBookItem.salePrice + `원`}"
+            android:text="@{bookDetailFragment.item.displaySalePrice}"
             app:layout_constraintEnd_toEndOf="@id/title_tv"
             app:layout_constraintStart_toStartOf="@id/title_tv"
             app:layout_constraintTop_toBottomOf="@id/authors_tv" />
@@ -61,7 +61,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:text="@{bookSearchViewModel.clickBookItem.contents}"
+            android:text="@{bookDetailFragment.item.displayContents}"
             app:layout_constraintEnd_toEndOf="@id/title_tv"
             app:layout_constraintStart_toStartOf="@id/title_tv"
             app:layout_constraintTop_toBottomOf="@id/price_tv" />

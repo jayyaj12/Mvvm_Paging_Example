@@ -1,5 +1,6 @@
 package com.example.mvvmexample.ui.book
 
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
@@ -16,9 +17,7 @@ import javax.inject.Inject
 class BookSearchViewModel @Inject constructor(private val bookRepository: BookRepository) : ViewModel() {
 
     // 질문 내용
-    var query: String = ""
-
-    lateinit var clickBookItem: Book
+    var query: MutableLiveData<String> = MutableLiveData("")
 
     // 페이징 데이터
     private val _searchBookPagingResult = MutableStateFlow<PagingData<Book>>(PagingData.empty())
@@ -28,7 +27,7 @@ class BookSearchViewModel @Inject constructor(private val bookRepository: BookRe
     fun getSearchBookPaging() {
         viewModelScope.launch {
             bookRepository.getSearchBookPaging(
-                query, null, null, null, null
+                query.value ?: "", null, null, null, null
             ).cachedIn(viewModelScope).collect {
                 _searchBookPagingResult.value = it
             }
@@ -47,13 +46,5 @@ class BookSearchViewModel @Inject constructor(private val bookRepository: BookRe
 //                Timber.e("message ${it.message}")
 //            }
 //        }
-    }
-
-    fun queryTextChangedWatcher(str: CharSequence,  start: Int,  before: Int,  count: Int) {
-        query = str.toString()
-    }
-
-    fun setClickedBookItem(item: Book) {
-        clickBookItem = item
     }
 }

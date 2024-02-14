@@ -1,25 +1,29 @@
 package com.example.mvvmexample.ui.base
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.core.os.bundleOf
-import com.example.mvvmexample.R
-import com.example.mvvmexample.ui.book.BookSearchFragment
-import dagger.hilt.android.AndroidEntryPoint
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
+import androidx.databinding.ViewDataBinding
+import java.time.Duration
 
-@AndroidEntryPoint
-class BaseActivity : AppCompatActivity() {
-    private val fragmentManager = supportFragmentManager
+abstract class BaseActivity<T: ViewDataBinding>(private val layoutResId: Int): AppCompatActivity() {
+
+    lateinit var binding: T
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = DataBindingUtil.setContentView(this, layoutResId)
+        binding.lifecycleOwner = this
 
-        setupFragmentContainer()
+        initAfterBinding()
     }
 
-    private fun setupFragmentContainer() {
-        fragmentManager.beginTransaction().replace(R.id.fragment_container, BookSearchFragment())
-            .commitAllowingStateLoss()
+    // 액티비티 별로 사용해야 하는 코드 작성
+    protected abstract fun initAfterBinding()
+
+    fun showToast(message: String, duration: Int) {
+        Toast.makeText(this, message, duration).show()
     }
+
 }
