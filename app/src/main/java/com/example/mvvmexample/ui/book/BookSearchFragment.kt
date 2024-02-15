@@ -8,20 +8,28 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import com.example.mvvmexample.R
 import com.example.mvvmexample.databinding.FragmentBookBinding
+import com.example.mvvmexample.ext.addFragment
+import com.example.mvvmexample.ext.onReplaceFragment
 import com.example.mvvmexample.ui.base.BaseFragment
+import com.example.mvvmexample.ui.book.BookConstant.BOOK_REQUEST_KEY
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class BookSearchFragment : BaseFragment<FragmentBookBinding>(R.layout.fragment_book) {
 
+    val bookRequestCode: String by lazy {
+        BOOK_REQUEST_KEY
+    }
     private val bookSearchViewModel: BookSearchViewModel by viewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
     }
 
     override fun initAfter() {
         binding.bookSearchFragment = this
         binding.bookSearchViewModel = bookSearchViewModel
+        binding.bookDetailFragment = BookDetailFragment()
     }
 }

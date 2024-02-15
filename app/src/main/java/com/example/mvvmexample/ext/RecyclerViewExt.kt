@@ -14,11 +14,16 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-@BindingAdapter("setFragment", "setItem")
-fun RecyclerView.bindSetPagingItems(fragment: BookSearchFragment, items: PagingData<Book>) {
-    val adapter = if(this.adapter == null) {
+@BindingAdapter("setFragment", "moveFragment", "requestKey", "setItem")
+fun RecyclerView.bindSetPagingItems(
+    fragment: Fragment,
+    moveFragment: Fragment,
+    requestKey: String,
+    items: PagingData<Book>
+) {
+    val adapter = if (this.adapter == null) {
         BookSearchPagingAdapter {
-            fragment.onReplaceFragment(BookDetailFragment(it))
+            fragment.onReplaceFragment(moveFragment, requestKey, it, true)
         }
     } else {
         this.adapter as BookSearchPagingAdapter
@@ -40,5 +45,4 @@ fun RecyclerView.bindSetPagingItems(fragment: BookSearchFragment, items: PagingD
             adapter.submitData(it)
         }
     }
-
 }

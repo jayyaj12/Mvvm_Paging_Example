@@ -5,6 +5,12 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ReportFragment.Companion.reportFragment
+import com.example.mvvmexample.R
+import com.example.mvvmexample.ext.addFragment
+import com.example.mvvmexample.ui.book.Book
+import com.example.mvvmexample.ui.book.BookSearchFragment
 import java.time.Duration
 
 abstract class BaseActivity<T: ViewDataBinding>(private val layoutResId: Int): AppCompatActivity() {
@@ -25,5 +31,4 @@ abstract class BaseActivity<T: ViewDataBinding>(private val layoutResId: Int): A
     fun showToast(message: String, duration: Int) {
         Toast.makeText(this, message, duration).show()
     }
-
 }
