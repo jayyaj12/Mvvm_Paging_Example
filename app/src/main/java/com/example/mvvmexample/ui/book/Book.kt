@@ -3,6 +3,14 @@ package com.example.mvvmexample.ui.book
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
 
+
+
+@Parcelize
+data class SearchBookDto(
+    val isLast: Boolean,
+    val item: List<Book>
+): Parcelable
+
 @Parcelize
 data class Book(
     val isbn: String,

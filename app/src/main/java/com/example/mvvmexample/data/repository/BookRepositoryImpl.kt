@@ -6,6 +6,7 @@ import androidx.paging.PagingData
 import com.example.mvvmexample.data.network.BookServiceApi
 import com.example.mvvmexample.ui.book.Book
 import com.example.mvvmexample.ui.book.BookSearchPagingSource
+import com.example.mvvmexample.ui.book.SearchBookDto
 import com.example.mvvmexample.ui.book.mapperToBook
 import com.example.mvvmexample.util.Constant.PAGING_MAX_SIZE
 import com.example.mvvmexample.util.Constant.PAGING_SIZE
@@ -42,7 +43,7 @@ class BookRepositoryImpl @Inject constructor(private val bookServiceApi: BookSer
         page: Int?,
         size: Int?,
         target: String?
-    ): Result<List<Book>> {
+    ): Result<SearchBookDto> {
         when(val searchBookList =
             bookServiceApi.getSearchBook(query, sort, page, size, target)) {
             is NetworkState.Success -> return Result.success(mapperToBook(searchBookList.body))

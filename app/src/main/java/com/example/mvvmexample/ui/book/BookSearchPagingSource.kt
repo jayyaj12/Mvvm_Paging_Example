@@ -44,7 +44,7 @@ class BookSearchPagingSource(
             }
 
             LoadResult.Page(
-                data = data,
+                data = data.item,
                 prevKey = prevKey,
                 nextKey = nextKey
             )

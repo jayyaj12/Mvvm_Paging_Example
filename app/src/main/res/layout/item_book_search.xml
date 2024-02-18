@@ -4,6 +4,7 @@
     xmlns:bind="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="bookModel"
             type="com.example.mvvmexample.ui.book.Book" />
@@ -15,47 +16,47 @@
         android:layout_height="100dp">
 
         <ImageView
+            android:id="@+id/thumbnail_iv"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            app:layout_constraintStart_toStartOf="parent"
             android:layout_marginStart="8dp"
-            bind:setImageUrl="@{bookModel.thumbnail}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:id="@+id/thumbnail_iv"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            bind:setImageUrl="@{bookModel.thumbnail}" />
 
         <TextView
+            android:id="@+id/title_tv"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:layout_constraintStart_toEndOf="@id/thumbnail_iv"
-            app:layout_constraintTop_toTopOf="@id/thumbnail_iv"
-            android:text="@{bookModel.displayTitle}"
-            android:maxLines="1"
-            android:id="@+id/title_tv"
+            android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
             android:ellipsize="end"
+            android:maxLines="1"
+            android:text="@{bookModel.displayTitle}"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginStart="8dp"/>
+            app:layout_constraintStart_toEndOf="@id/thumbnail_iv"
+            app:layout_constraintTop_toTopOf="@id/thumbnail_iv" />
 
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="@id/title_tv"
-            app:layout_constraintTop_toBottomOf="@id/title_tv"
-            android:text="@{bookModel.displayAuthors}"
             android:layout_marginTop="4dp"
-            android:maxLines="2"
             android:ellipsize="end"
-            app:layout_constraintEnd_toEndOf="@id/title_tv"/>
+            android:maxLines="2"
+            android:text="@{bookModel.displayAuthors}"
+            app:layout_constraintEnd_toEndOf="@id/title_tv"
+            app:layout_constraintStart_toStartOf="@id/title_tv"
+            app:layout_constraintTop_toBottomOf="@id/title_tv" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="@{bookModel.displaySalePrice}"
             android:textSize="18dp"
             android:textStyle="bold"
-            android:text="@{bookModel.displaySalePrice}"
-            app:layout_constraintStart_toStartOf="@id/title_tv"
-            app:layout_constraintBottom_toBottomOf="@id/thumbnail_iv"/>
+            app:layout_constraintBottom_toBottomOf="@id/thumbnail_iv"
+            app:layout_constraintStart_toStartOf="@id/title_tv" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

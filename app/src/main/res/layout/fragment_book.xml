@@ -18,6 +18,10 @@
         <variable
             name="bookSearchViewModel"
             type="com.example.mvvmexample.ui.book.BookSearchViewModel" />
+
+        <variable
+            name="bookListAdapter"
+            type="com.example.mvvmexample.ui.base.BaseListAdapter" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -33,8 +37,8 @@
             android:layout_marginEnd="12dp"
             android:gravity="left|center"
             android:hint="검색어를 입력해주세요."
-            android:text="@={bookSearchViewModel.query}"
             android:paddingStart="12dp"
+            android:text="@={bookSearchViewModel.query}"
             android:textColor="@color/black"
             android:textSize="16dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -45,7 +49,7 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginEnd="8dp"
-            android:onClick="@{() -> bookSearchViewModel.getSearchBookPaging()}"
+            android:onClick="@{() -> bookSearchViewModel.getSearchBook(`button`)}"
             android:src="@drawable/search_icon"
             app:layout_constraintBottom_toBottomOf="@id/search_et"
             app:layout_constraintEnd_toEndOf="@id/search_et"
@@ -60,11 +64,25 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            bind:moveFragment="@{bookDetailFragment}"
-            bind:requestKey="@{bookSearchFragment.bookRequestCode}"
             app:layout_constraintTop_toBottomOf="@id/search_et"
-            bind:setFragment="@{bookSearchFragment}"
-            bind:setItem="@{bookSearchViewModel.searchBookPagingResult}" />
+            bind:item="@{bookSearchViewModel.searchBookResult}"
+            bind:listAdapter="@{bookListAdapter}"
+            bind:viewModel="@{bookSearchViewModel}"
+            bind:viewModelType="@{`bookViewModel`}" />
+
+        <!--        <androidx.recyclerview.widget.RecyclerView-->
+        <!--            android:id="@+id/search_book_rv"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="0dp"-->
+        <!--            android:orientation="vertical"-->
+        <!--            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"-->
+        <!--            app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--            app:layout_constraintEnd_toEndOf="parent"-->
+        <!--            bind:setListAdapter="@{bookListAdapter}"-->
+        <!--            bind:setMutableLiveData="@{bookSearchViewModel._searchBookCall}"-->
+        <!--            bind:setItem="@{bookSearchViewModel.searchBookResult}"-->
+        <!--            app:layout_constraintStart_toStartOf="parent"-->
+        <!--            app:layout_constraintTop_toBottomOf="@id/search_et" />-->
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

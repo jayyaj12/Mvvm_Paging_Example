@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import com.example.mvvmexample.R
 import com.example.mvvmexample.databinding.FragmentBookBinding
 import com.example.mvvmexample.ext.addFragment
@@ -13,6 +14,8 @@ import com.example.mvvmexample.ext.onReplaceFragment
 import com.example.mvvmexample.ui.base.BaseFragment
 import com.example.mvvmexample.ui.book.BookConstant.BOOK_REQUEST_KEY
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class BookSearchFragment : BaseFragment<FragmentBookBinding>(R.layout.fragment_book) {
@@ -31,5 +34,14 @@ class BookSearchFragment : BaseFragment<FragmentBookBinding>(R.layout.fragment_b
         binding.bookSearchFragment = this
         binding.bookSearchViewModel = bookSearchViewModel
         binding.bookDetailFragment = BookDetailFragment()
+        binding.bookListAdapter = BookSearchListAdapter()
+    }
+
+    private fun setupViewModelObserver() {
+        lifecycleScope.launch {
+            bookSearchViewModel.searchBookCall.collectLatest {
+//                bookSearchViewModel.getSearchBook()
+            }
+        }
     }
 }
