@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView.AdapterDataObserver
 import javax.annotation.Nullable
 
 
-    abstract class BaseListAdapter<T>:
+abstract class BaseListAdapter<T> :
     ListAdapter<T, BaseListAdapter<T>.BaseViewHolder>(DiffCallback<T>()) {
     init {
         registerAdapterDataObserver(ItemCountObserver())
@@ -45,7 +45,7 @@ import javax.annotation.Nullable
     protected abstract fun onItemClick(item: T)
     protected abstract fun onAdapterDataChanged(itemCount: Int)
 
-        inner class BaseViewHolder(private var binding: ViewDataBinding) : RecyclerView.ViewHolder(
+    inner class BaseViewHolder(private var binding: ViewDataBinding) : RecyclerView.ViewHolder(
         binding.root
     ) {
         fun bind(obj: T) {

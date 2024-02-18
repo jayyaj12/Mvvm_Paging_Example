@@ -16,6 +16,7 @@ import com.example.mvvmexample.ui.book.BookConstant.BOOK_REQUEST_KEY
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import timber.log.Timber
 
 @AndroidEntryPoint
 class BookSearchFragment : BaseFragment<FragmentBookBinding>(R.layout.fragment_book) {
@@ -34,7 +35,10 @@ class BookSearchFragment : BaseFragment<FragmentBookBinding>(R.layout.fragment_b
         binding.bookSearchFragment = this
         binding.bookSearchViewModel = bookSearchViewModel
         binding.bookDetailFragment = BookDetailFragment()
-        binding.bookListAdapter = BookSearchListAdapter()
+        binding.bookListAdapter = BookSearchListAdapter {
+            Timber.e("item $it")
+            this@BookSearchFragment.onReplaceFragment(BookDetailFragment(), bookRequestCode, it, true)
+        }
     }
 
     private fun setupViewModelObserver() {

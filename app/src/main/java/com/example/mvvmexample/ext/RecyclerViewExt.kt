@@ -51,12 +51,24 @@ import timber.log.Timber
 //    }
 //}
 
-@BindingAdapter("bind:listAdapter", "bind:item", "bind:viewModelType", "bind:viewModel", requireAll = false)
+@BindingAdapter(
+    "bind:listAdapter",
+    "bind:item",
+    "bind:viewModelType",
+    "bind:viewModel",
+    "bind:nowFragment",
+    "bind:moveFragment",
+    "bind:requestKey",
+    requireAll = false
+)
 fun RecyclerView.bindSetListAdapter(
     listAdapter: BaseListAdapter<*>,
     items: List<Any>,
     type: String,
-    viewModel: BaseViewModel
+    viewModel: BaseViewModel,
+    nowFragment: Fragment,
+    moveFragment: Fragment,
+    requestKey: String,
 ) {
     this.setHasFixedSize(true)
 
@@ -64,15 +76,20 @@ fun RecyclerView.bindSetListAdapter(
         this.adapter = listAdapter
     }
 
+    Timber.e("items $items")
     when (type) {
         "bookViewModel" -> {
-            val baseAdapter = this.adapter as BookSearchListAdapter
-            baseAdapter.submitList(items.toMutableList())
+
+
+            val baseAdapter = this.adapter as? BookSearchListAdapter
+            baseAdapter?.submitList(items.toMutableList())
         }
 
         "weatherViewModel" -> {
-            val baseAdapter = BookSearchListAdapter()
-            baseAdapter.submitList(items.toMutableList())
+//            val baseAdapter = BookSearchListAdapter() {
+//
+//            }
+//            baseAdapter.submitList(items.toMutableList())
         }
     }
 

@@ -1,5 +1,7 @@
 package com.example.mvvmexample.ui.book
 
+import android.content.Context
+import android.view.View
 import com.example.mvvmexample.ui.base.BaseListAdapter
 import android.widget.ImageView
 import com.example.mvvmexample.BR
@@ -8,7 +10,7 @@ import timber.log.Timber
 import javax.inject.Singleton
 
 @Singleton
-class BookSearchListAdapter(): BaseListAdapter<Any>() {
+class BookSearchListAdapter(private val onClickItem: (Book) -> Unit): BaseListAdapter<Any>() {
 
     override fun getLayoutResourceId(): Int {
         return R.layout.item_book_search
@@ -19,12 +21,10 @@ class BookSearchListAdapter(): BaseListAdapter<Any>() {
     }
 
     override fun onItemClick(item: Any) {
+        onClickItem(item as Book)
     }
 
     override fun onAdapterDataChanged(itemCount: Int) {
-        binding?.let {
-            it.root.findViewById<ImageView>(R.id.thumbnail_iv)
-        }
+        Timber.e("itemCount $itemCount")
     }
-
 }
