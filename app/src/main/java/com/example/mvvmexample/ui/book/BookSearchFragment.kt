@@ -39,12 +39,4 @@ class BookSearchFragment : BaseFragment<FragmentBookBinding>(R.layout.fragment_b
             this@BookSearchFragment.onReplaceFragment(BookDetailFragment(), bookRequestCode, it, true)
         }
     }
-
-    private fun setupViewModelObserver() {
-        lifecycleScope.launch {
-            bookSearchViewModel.searchBookCall.collectLatest {
-//                bookSearchViewModel.getSearchBook()
-            }
-        }
-    }
 }
