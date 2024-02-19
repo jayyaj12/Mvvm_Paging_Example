@@ -34,7 +34,6 @@ class BookSearchFragment : BaseFragment<FragmentBookBinding>(R.layout.fragment_b
     override fun initAfter() {
         binding.bookSearchFragment = this
         binding.bookSearchViewModel = bookSearchViewModel
-        binding.bookDetailFragment = BookDetailFragment()
         binding.bookListAdapter = BookSearchListAdapter {
             Timber.e("item $it")
             this@BookSearchFragment.onReplaceFragment(BookDetailFragment(), bookRequestCode, it, true)

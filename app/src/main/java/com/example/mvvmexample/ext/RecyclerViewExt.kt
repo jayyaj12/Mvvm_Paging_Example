@@ -56,19 +56,13 @@ import timber.log.Timber
     "bind:item",
     "bind:viewModelType",
     "bind:viewModel",
-    "bind:nowFragment",
-    "bind:moveFragment",
-    "bind:requestKey",
     requireAll = false
 )
 fun RecyclerView.bindSetListAdapter(
     listAdapter: BaseListAdapter<*>,
     items: List<Any>,
     type: String,
-    viewModel: BaseViewModel,
-    nowFragment: Fragment,
-    moveFragment: Fragment,
-    requestKey: String,
+    viewModel: BaseViewModel
 ) {
     this.setHasFixedSize(true)
 
@@ -79,8 +73,6 @@ fun RecyclerView.bindSetListAdapter(
     Timber.e("items $items")
     when (type) {
         "bookViewModel" -> {
-
-
             val baseAdapter = this.adapter as? BookSearchListAdapter
             baseAdapter?.submitList(items.toMutableList())
         }

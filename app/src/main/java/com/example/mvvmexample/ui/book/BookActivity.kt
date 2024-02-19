@@ -14,15 +14,6 @@ class BookActivity: BaseActivity<ActivityBookBinding>(R.layout.activity_book) {
     }
 
     override fun initAfterBinding() {
-        addFragment(BookSearchFragment())
+        this.addFragment(R.id.fragment_container, BookSearchFragment())
     }
-
-    fun addFragment(fragment: Fragment, addBackStack: Boolean = false) {
-        this.addFragment(
-            containerViewId = R.id.fragment_container,
-            fragment = fragment,
-            addBackStack = addBackStack
-        )
-    }
-
 }
