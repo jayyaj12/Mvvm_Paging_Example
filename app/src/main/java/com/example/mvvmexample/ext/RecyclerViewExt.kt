@@ -78,10 +78,7 @@ fun RecyclerView.bindSetListAdapter(
         }
 
         "weatherViewModel" -> {
-//            val baseAdapter = BookSearchListAdapter() {
-//
-//            }
-//            baseAdapter.submitList(items.toMutableList())
+            // 날짜 .. 가 있을 경우 이렇게 처리
         }
     }
 
@@ -96,20 +93,3 @@ fun RecyclerView.bindSetListAdapter(
         }
     }
 }
-//
-//@BindingAdapter("bind:endlessScroll", "bind:viewModelType")
-//fun RecyclerView.setEndlessScroll(
-//    vm: BaseViewModel, type: String
-//) {
-//
-//    this.setOnScrollChangeListener { v, scrollX, scrollY, oldScrollX, oldScrollY ->
-//        if (!canScrollVertically(1)) {
-//            when (type) {
-//                "bookViewModel" -> {
-//                    vm as BookSearchViewModel
-//                    vm.getSearchBook("scroll")
-//                }
-//            }
-//        }
-//    }
-//}
