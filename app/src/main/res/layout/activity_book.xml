@@ -4,16 +4,32 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".ui.base.HiltActivity">
 
+    <data>
+        <variable
+            name="bookActivity"
+            type="com.example.mvvmexample.ui.book.BookActivity" />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="다음 액티비티로 넘어가기"
+            android:onClick="@{() -> bookActivity.onClickedNextActivityBtn()}"
+            android:id="@+id/next_activity_btn"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
         <FrameLayout
             android:id="@+id/fragment_container"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toBottomOf="@id/next_activity_btn"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

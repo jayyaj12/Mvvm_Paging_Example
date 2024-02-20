@@ -11,6 +11,7 @@ import com.example.mvvmexample.R
 import com.example.mvvmexample.ext.addFragment
 import com.example.mvvmexample.ui.book.Book
 import com.example.mvvmexample.ui.book.BookSearchFragment
+import dagger.hilt.android.AndroidEntryPoint
 import java.time.Duration
 
 abstract class BaseActivity<T: ViewDataBinding>(private val layoutResId: Int): AppCompatActivity() {
